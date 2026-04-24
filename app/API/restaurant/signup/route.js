@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server"
-import connectDB from "../../lib/db";
-import restaurantmodel from "../../lib/restaurantmodel";
+import connectDB from "../../../lib/db";
+import restaurantmodel from "../../../lib/restaurantmodel";
 import bcrypt from 'bcrypt';
 
 export async function GET(){
@@ -22,10 +22,10 @@ export async function POST(req){
         if(password===c_password){
             const hashpassword = await bcrypt.hash(password,10);
             const restaurant = await restaurantmodel.create({email,password:hashpassword,rname,city,address,contact})
-            return NextResponse.json({message:"User created successfully"},{status:200})
+            return NextResponse.json({message:"User created successfully",restaurant},{status:200})
         }
         else{
-            return NextResponse.json({message:"Password and Confirm password doesnot match"},{staus:400})
+            return NextResponse.json({message:"Password and Confirm password doesnot match"},{status:400})
         }
     }
 }
