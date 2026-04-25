@@ -1,8 +1,14 @@
 "use client"
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useRouter } from "next/navigation";
 const restaurantlogin = () => {
   const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push('/restaurant'); // redirect if not logged in
+    }},[])
   const [email,setEmail]=useState("");
   const [password,setPassword]=useState("");
   const login = async(e)=>{
@@ -16,6 +22,7 @@ const restaurantlogin = () => {
       )
       const data= await res.json();
       if(res.ok){
+        localStorage.setItem("token",data.token)
         router.push("/restaurant/dashboard");
       }else{
         alert(data.message);
