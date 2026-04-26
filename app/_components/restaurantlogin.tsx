@@ -22,6 +22,7 @@ const restaurantlogin = () => {
       )
       const data= await res.json();
       if(res.ok){
+        localStorage.setItem("User",JSON.stringify(data.user))
         localStorage.setItem("token",data.token)
         router.push("/restaurant/dashboard");
       }else{

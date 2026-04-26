@@ -17,7 +17,7 @@ export async function POST(req) {
                 "secretKey",
                 { expiresIn: "1d" }
             );
-            return NextResponse.json({ message: "Login Successful", token }, { status: 200 });
+            return NextResponse.json({ message: "Login Successful", token ,user}, { status: 200 });
         } else {
             return NextResponse.json({ message: "Re-Check Email Or Password" }, { status: 400 });
         }

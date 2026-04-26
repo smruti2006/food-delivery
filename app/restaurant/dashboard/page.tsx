@@ -9,8 +9,8 @@ const page = () => {
   useEffect(()=>{
     const token = localStorage.getItem("token");
     if(!token){
-      alert("Login first");
       router.push("/restaurant")
+      alert("Login first");
     }
   },[])
   return (
