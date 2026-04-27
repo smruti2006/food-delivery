@@ -5,8 +5,19 @@ const addnewitem = () => {
   const[price,setPrice]=useState("");
   const[path,setPath]=useState("");
   const[description,setDescription]=useState("");
-  const addItem = ()=>{
-    console.log(item,price,path,description)
+  const addItem = async(e)=>{
+    console.log(item,price,path,description);
+    e.preventDefault();
+    const User = JSON.parse(localStorage.getItem("User"))
+    const restro_id = User._id
+    const res = await fetch("/API/restaurant/foods",{
+      method:"POST",
+      body:JSON.stringify({
+        name:item,price,path,description,restro_id
+      })
+    })
+    const data =await res.json()
+    alert(data.message);
   }
   return (
     <>
